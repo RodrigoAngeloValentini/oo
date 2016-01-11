@@ -1,11 +1,18 @@
 <?php
-define('CLASS_DIR', 'src/');
+define("CLASS_DIR","src/"); //utilizei document_root apenas porque o index esta na raiz dele
 set_include_path(get_include_path().PATH_SEPARATOR.CLASS_DIR);
-spl_autoload_register();
+spl_autoload_register(function ($class) {
+    require_once(str_replace('\\', '/', $class . '.php'));
+});
 
-$x = new SON\Conta\Types\ContaType();
-$x->depositar(10);
-echo $x->getSaldo();
+$conta = new SON\Conta\Types\ContaType();
+$conta->depositar(10);
+echo $conta->getSaldo();
+
+$bancoSantander = new SON\Banco\Santander($conta);
+$bancoSantander->setConta($conta);
+$bancoSantander->setNome("Santander Exemplo");
+$bancoSantander->getConta()->getSaldo();
 //require_once 'Pessoa.php';
 //require_once 'Produto.php';
 //require_once 'Tenis.php';
