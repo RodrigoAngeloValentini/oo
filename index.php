@@ -13,6 +13,9 @@ $bancoSantander = new SON\Banco\Santander($conta);
 $bancoSantander->setConta($conta);
 $bancoSantander->setNome("Santander Exemplo");
 $bancoSantander->getConta()->getSaldo();
+
+$resultado = Math::somar(10,10);
+
 //require_once 'Pessoa.php';
 //require_once 'Produto.php';
 //require_once 'Tenis.php';
